@@ -2,8 +2,8 @@ import express from 'express';
 
 const router = express.Router();
 
-router.get('/', (_req, res) => {
-  res.send('Hello world!');
+router.get('/hello', (_req, res) => {
+  res.json({ message: 'Hello world!' });
 });
 
 router.post('/', (_req, res) => {
