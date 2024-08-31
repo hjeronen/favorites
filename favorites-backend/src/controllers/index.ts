@@ -13,6 +13,6 @@ router.post('/', (_req, res) => {
 });
 
 router.use('/things', thingsRouter);
-router.unsubscribe('/users', usersRouter);
+router.use('/users', usersRouter);
 
 export default router;
