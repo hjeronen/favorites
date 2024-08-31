@@ -54,6 +54,15 @@ const App = (): JSX.Element => {
     }
   };
 
+  const deleteUser = async (userId) => {
+    try {
+      await userService.deleteUser(userId);
+      setUsers(users.filter((user) => user.id !== userId));
+    } catch (error) {
+      console.log(`Error: ${error}`);
+    }
+  };
+
   return (
     <div>
       <h2>Favorite things</h2>
@@ -61,7 +70,12 @@ const App = (): JSX.Element => {
       <AddUser createUser={addUser} />
       <ul>
         {users && users.length > 0 ? (
-          users.map((user, i) => <li key={i}>{user?.name}</li>)
+          users.map((user, i) => (
+            <li key={i}>
+              {user?.name}{' '}
+              <button onClick={() => deleteUser(user.id)}>Delete</button>
+            </li>
+          ))
         ) : (
           <p>No users here yet.</p>
         )}

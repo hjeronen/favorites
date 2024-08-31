@@ -7,5 +7,7 @@ export interface Thing {
 }
 
 export interface User {
+  id: number;
   name: string;
+  username: string;
 }

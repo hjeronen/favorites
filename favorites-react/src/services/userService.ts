@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { User } from '../types';
 
 const baseUrl = 'http://localhost:3000/api';
 
@@ -7,9 +8,14 @@ const getAllUsers = async () => {
   return response.data;
 };
 
-const createUser = async (newUser) => {
+const createUser = async (newUser: User) => {
   const response = await axios.post(`${baseUrl}/users`, newUser);
   return response.data;
 };
 
-export default { getAllUsers, createUser };
+const deleteUser = async (userId: number) => {
+  const response = await axios.delete(`${baseUrl}/users/${userId}`);
+  return response.data;
+};
+
+export default { getAllUsers, createUser, deleteUser };

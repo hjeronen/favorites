@@ -31,4 +31,14 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+router.delete('/:id', async (req, res) => {
+  try {
+    const user = await User.findByPk(req.params.id);
+    await user?.destroy();
+    return res.status(200).end();
+  } catch (error) {
+    return res.status(400).json({ error });
+  }
+});
+
 export default router;
