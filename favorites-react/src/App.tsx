@@ -54,6 +54,15 @@ const App = (): JSX.Element => {
     }
   };
 
+  const deleteThing = async (thingId) => {
+    try {
+      await thingService.deleteThing(thingId);
+      setThings(things.filter((thing) => thing.id !== thingId));
+    } catch (error) {
+      console.log(`Error: ${error}`);
+    }
+  };
+
   const deleteUser = async (userId) => {
     try {
       await userService.deleteUser(userId);
@@ -84,7 +93,12 @@ const App = (): JSX.Element => {
       <p>List here all your favorite things:</p>
       <ul>
         {things && things.length > 0 ? (
-          things.map((thing, i) => <li key={i}>{thing?.name}</li>)
+          things.map((thing, i) => (
+            <li key={i}>
+              {thing?.name}{' '}
+              <button onClick={() => deleteThing(thing.id)}>Delete</button>
+            </li>
+          ))
         ) : (
           <p>No things here yet.</p>
         )}

@@ -18,4 +18,9 @@ const createThing = async (newThing) => {
   return response.data;
 };
 
-export default { getHello, getAll, createThing };
+const deleteThing = async (thingId) => {
+  const response = await axios.delete(`${baseUrl}/things/${thingId}`);
+  return response.data;
+};
+
+export default { getHello, getAll, createThing, deleteThing };
